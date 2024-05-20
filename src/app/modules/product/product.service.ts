@@ -11,6 +11,21 @@ const getSpecificProductFromDb = async (id: string) => {
   return result;
 };
 
+const getSearchProductFromDb = async (searchTerm: string) => {
+  const regex = new RegExp(searchTerm, "i");
+
+  const result = await Product.find({
+    $or: [
+      { name: regex },
+      { description: regex },
+      { category: regex },
+      { tags: regex },
+    ],
+  });
+
+  return result;
+};
+
 const createProductIntoDb = async (item: IProduct) => {
   const result = await Product.create(item);
   return result;
@@ -33,6 +48,7 @@ const deleteProductFromDb = async (id: string) => {
 export const ProductService = {
   getAllProductFromDb,
   getSpecificProductFromDb,
+  getSearchProductFromDb,
   createProductIntoDb,
   updateProductIntoDb,
   deleteProductFromDb,

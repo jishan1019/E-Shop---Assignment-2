@@ -4,6 +4,20 @@ import { ProductValidationSchema } from "./product.validation";
 
 const getAllProduct = async (req: Request, res: Response) => {
   try {
+    const searchTerm = req.query.searchTerm;
+
+    if (searchTerm) {
+      const products = await ProductService.getSearchProductFromDb(
+        searchTerm as string,
+      );
+
+      return res.status(200).json({
+        success: true,
+        message: `Products matching search term '${searchTerm}' fetched successfully!`,
+        data: products,
+      });
+    }
+
     const result = await ProductService.getAllProductFromDb();
     res.status(200).json({
       success: true,
