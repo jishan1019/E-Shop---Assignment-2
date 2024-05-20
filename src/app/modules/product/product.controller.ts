@@ -18,6 +18,24 @@ const getAllProduct = async (req: Request, res: Response) => {
   }
 };
 
+const getSpecificProduct = async (req: Request, res: Response) => {
+  try {
+    const { productId } = req.params;
+    const result = await ProductService.getSpecificProductFromDb(productId);
+
+    res.status(200).json({
+      success: true,
+      message: "Products fetched successfully!",
+      data: result,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error,
+    });
+  }
+};
+
 const createProduct = async (req: Request, res: Response) => {
   try {
     const validatedData = ProductValidationSchema.parse(req.body);
@@ -38,5 +56,6 @@ const createProduct = async (req: Request, res: Response) => {
 
 export const ProductController = {
   createProduct,
+  getSpecificProduct,
   getAllProduct,
 };
