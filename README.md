@@ -15,7 +15,7 @@ E-Shop is an e-commerce application developed using Node.js, Express, TypeScript
 1. **Clone the repository:**
 
    ```sh
-   git clone https://github.com/your-username/E-Shop.git
+   git clone https://github.com/jishan1019/E-Shop---Assignment-2.git
    cd E-Shop
    ```
 
@@ -28,7 +28,7 @@ E-Shop is an e-commerce application developed using Node.js, Express, TypeScript
 3. **Run Project via below command**
    ```
    yarn start:dev
-   after this command it will run project on http://localhost:4000 port
+   Project Running Port : http://localhost:4000
    ```
 
 ### Api Endpoints
@@ -39,11 +39,11 @@ E-Shop is an e-commerce application developed using Node.js, Express, TypeScript
    base_url:http://localhost:4000
 
     1. GET ALL Products : {{base_url}}/api/products
-    2. Get Specific Product : {{base_url}}/api/products/5fd67e890b60c903cd8544a3
+    2. Get Specific Product : {{base_url}}/api/products/664c4f0c7da6ab3af93fbd0c
     3. Get Search Product : {{base_url}}/api/products?searchTerm=iphone
     4. POST Product :  {{base_url}}/api/products
-    5. Update Product : {{base_url}}/api/products/664b9173ce6b93d4bc33338e
-    6. Delete Product : {{base_url}}/api/products/664b81612c8fa5564c8d6eef
+    5. Update Product : {{base_url}}/api/products/664c4f0c7da6ab3af93fbd0c
+    6. Delete Product : {{base_url}}/api/products/664c4f0c7da6ab3af93fbd0c
    ```
 
    2. **Order**
