@@ -5,24 +5,13 @@ import { OrderValidationSchema } from "./order.validation";
 const getAllOrder = async (req: Request, res: Response) => {
   try {
     const email = req.query.email;
-
-    if (email) {
-      const userOrder = await OrderService.getSingleUserOrderFromDb(
-        email as string,
-      );
-
-      return res.status(200).json({
-        success: true,
-        message: "Orders fetched successfully for user email!",
-        data: userOrder,
-      });
-    }
-
-    const result = await OrderService.getAllOrderFromDb();
+    const result = await OrderService.getAllOrderFromDb(email as string);
 
     res.status(200).json({
       success: true,
-      message: "Order fetched successfully!",
+      message: email
+        ? "Orders fetched successfully for user email!"
+        : "Order fetched successfully!",
       data: result,
     });
   } catch (error) {
