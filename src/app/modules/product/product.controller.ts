@@ -6,22 +6,14 @@ const getAllProduct = async (req: Request, res: Response) => {
   try {
     const searchTerm = req.query.searchTerm;
 
-    if (searchTerm) {
-      const products = await ProductService.getSearchProductFromDb(
-        searchTerm as string,
-      );
-
-      return res.status(200).json({
-        success: true,
-        message: `Products matching search term '${searchTerm}' fetched successfully!`,
-        data: products,
-      });
-    }
-
-    const result = await ProductService.getAllProductFromDb();
+    const result = await ProductService.getAllProductFromDb(
+      searchTerm as string
+    );
     res.status(200).json({
       success: true,
-      message: "Products fetched successfully!",
+      message: searchTerm
+        ? `Products matching search term '${searchTerm}' fetched successfully!`
+        : "Products fetched successfully!",
       data: result,
     });
   } catch (error) {
@@ -75,7 +67,7 @@ const updateProduct = async (req: Request, res: Response) => {
 
     const result = await ProductService.updateProductIntoDb(
       productId,
-      productData,
+      productData
     );
 
     res.status(201).json({
